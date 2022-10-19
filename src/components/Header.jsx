@@ -7,76 +7,40 @@ import {
   makeStyles,
   Modal,
   Toolbar,
-  InputBase,
-  alpha,
   Typography,
+  Link,
 } from "@material-ui/core/";
-import SearchIcon from "@material-ui/icons/Search";
 import BlockIcon from "@material-ui/icons/Block";
 // import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import logo from "../logo.svg";
 import SignUp from "./Account/SignUp";
 import Login from "./Account/Login";
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles(({ spacing, palette, shadows }) => ({
   root: {
     flexGrow: 1,
   },
   header: {
-    padding: theme.spacing(1, 0),
+    padding: spacing(1, 0),
   },
 
   headerItem: {
     display: "flex",
-    columnGap: theme.spacing(2),
-    padding: theme.spacing(1, 0),
+    columnGap: spacing(2),
+    padding: spacing(1, 0),
   },
   headerRight: {
     display: "flex",
+    flexWrap: "nowrap",
     justifyContent: "flex-end",
-    columnGap: theme.spacing(2),
-    rowGap: theme.spacing(1),
+    columnGap: spacing(2),
+    rowGap: spacing(1),
   },
   logo: {
     white: "60px",
     height: "60px",
   },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: alpha(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: alpha(theme.palette.common.white, 0.25),
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "auto",
-    },
-  },
-  searchIcon: {
-    padding: theme.spacing(0, 2),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  inputRoot: {
-    color: "inherit",
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: "12ch",
-      "&:focus": {
-        width: "20ch",
-      },
-    },
+  btnContac: {
+    color: palette.common.white,
   },
   modal: {
     display: "flex",
@@ -85,9 +49,10 @@ const useStyle = makeStyles((theme) => ({
   },
   modalSection: {
     maxWidth: "80%",
-    backgroundColor: theme.palette.common.white,
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(7, 4),
+    backgroundColor: palette.common.white,
+    boxShadow: shadows[5],
+    padding: spacing(7, 4),
+    borderRadius: spacing(3),
   },
   formButton: {
     display: "flex",
@@ -96,7 +61,7 @@ const useStyle = makeStyles((theme) => ({
   formButtonCancel: {
     maxWidth: "70%",
     width: "100%",
-    borderRadius: theme.spacing(2.5),
+    borderRadius: spacing(2.5),
   },
 }));
 
@@ -110,21 +75,6 @@ const Header = () => {
     setModal(!modal);
   };
 
-  const search = (
-    <div className={classes.search}>
-      <div className={classes.searchIcon}>
-        <SearchIcon />
-      </div>
-      <InputBase
-        placeholder="Buscar…"
-        classes={{
-          root: classes.inputRoot,
-          input: classes.inputInput,
-        }}
-        inputProps={{ "aria-label": "search" }}
-      />
-    </div>
-  );
   const modalBody = (
     <section className={classes.modalSection}>
       {isUser ? <Login /> : <SignUp />}
@@ -170,13 +120,15 @@ const Header = () => {
                 className={(classes.headerItem, classes.headerRight)}
                 alignItems="center"
               >
-                {search}
+                <Link component="button" className={classes.btnContac}>
+                  Contactar con el administrador
+                </Link>
                 <Button
                   variant="contained"
                   color="secondary"
                   onClick={handleModal}
                 >
-                  Login
+                  Iniciar sesión
                 </Button>
 
                 {/* <WbIncandescentIcon /> */}

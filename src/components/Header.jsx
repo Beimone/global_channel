@@ -15,6 +15,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import BlockIcon from "@material-ui/icons/Block";
 // import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import logo from "../logo.svg";
+import SignUp from "./Account/SignUp";
 const useStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -91,6 +92,11 @@ const useStyle = makeStyles((theme) => ({
     display: "flex",
     justifyContent: "center",
   },
+  formButtonCancel: {
+    maxWidth: "70%",
+    width: "100%",
+    borderRadius: theme.spacing(2.5),
+  },
 }));
 
 const Header = () => {
@@ -120,9 +126,10 @@ const Header = () => {
   );
   const modalBody = (
     <section className={classes.modalSection}>
-      {isUser ? `Login` : "SignUp"}
+      {isUser ? `Login` : <SignUp />}
       <div className={classes.formButton}>
         <Button
+          className={classes.formButtonCancel}
           variant="contained"
           color="secondary"
           startIcon={<BlockIcon />}

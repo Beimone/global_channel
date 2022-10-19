@@ -16,6 +16,7 @@ import BlockIcon from "@material-ui/icons/Block";
 // import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import logo from "../logo.svg";
 import SignUp from "./Account/SignUp";
+import Login from "./Account/Login";
 const useStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -101,7 +102,7 @@ const useStyle = makeStyles((theme) => ({
 
 const Header = () => {
   const [modal, setModal] = useState(false);
-  const [isUser, setIsUser] = useState(false);
+  const [isUser, setIsUser] = useState(true);
   console.log(setIsUser, "XXXXXXXX");
   const classes = useStyle();
 
@@ -126,7 +127,7 @@ const Header = () => {
   );
   const modalBody = (
     <section className={classes.modalSection}>
-      {isUser ? `Login` : <SignUp />}
+      {isUser ? <Login /> : <SignUp />}
       <div className={classes.formButton}>
         <Button
           className={classes.formButtonCancel}

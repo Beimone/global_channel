@@ -1,18 +1,20 @@
+import { useState } from "react";
 import {
   AppBar,
   Button,
   Container,
   Grid,
   makeStyles,
+  Modal,
   Toolbar,
   InputBase,
   alpha,
   Typography,
 } from "@material-ui/core/";
 import SearchIcon from "@material-ui/icons/Search";
+import BlockIcon from "@material-ui/icons/Block";
 // import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import logo from "../logo.svg";
-
 const useStyle = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -74,10 +76,32 @@ const useStyle = makeStyles((theme) => ({
       },
     },
   },
+  modal: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  modalSection: {
+    maxWidth: "80%",
+    backgroundColor: theme.palette.common.white,
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(7, 4),
+  },
+  formButton: {
+    display: "flex",
+    justifyContent: "center",
+  },
 }));
 
 const Header = () => {
+  const [modal, setModal] = useState(false);
+  const [isUser, setIsUser] = useState(false);
+  console.log(setIsUser, "XXXXXXXX");
   const classes = useStyle();
+
+  const handleModal = () => {
+    setModal(!modal);
+  };
 
   const search = (
     <div className={classes.search}>
@@ -94,7 +118,22 @@ const Header = () => {
       />
     </div>
   );
-
+  const modalBody = (
+    <section className={classes.modalSection}>
+      {isUser ? `Login` : "SignUp"}
+      <div className={classes.formButton}>
+        <Button
+          variant="contained"
+          color="secondary"
+          startIcon={<BlockIcon />}
+          size="large"
+          onClick={handleModal}
+        >
+          Cancelar
+        </Button>
+      </div>
+    </section>
+  );
   return (
     <>
       <AppBar position="sticky" className={classes.header}>
@@ -124,7 +163,11 @@ const Header = () => {
                 alignItems="center"
               >
                 {search}
-                <Button variant="contained" color="secondary">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleModal}
+                >
                   Login
                 </Button>
 
@@ -134,6 +177,9 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
+      <Modal open={modal} onClose={handleModal} className={classes.modal}>
+        {modalBody}
+      </Modal>
     </>
   );
 };

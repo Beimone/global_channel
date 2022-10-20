@@ -1,4 +1,4 @@
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   Button,
   FormControl,
@@ -18,6 +18,7 @@ import { useState } from "react";
 const useStyle = makeStyles(({ palette, spacing }) => ({
   root: {
     maxWidth: "550px",
+    padding: spacing(0, 2),
   },
   title: {
     fontWeight: "500",
@@ -116,7 +117,10 @@ const SignUp = () => {
         sea verificada por el administrador.
       </Typography>
       <Typography variant="body1">
-        ¿Ya tienes una cuenta? <Link to ="/login" component="button">Iniciar sesión</Link>
+        ¿Ya tienes una cuenta?{" "}
+        <Link to="/login" component="button">
+          Iniciar sesión
+        </Link>
       </Typography>
 
       <form className={classes.formLogin} onSubmit={handlOnSubmit}>

@@ -1,20 +1,18 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
+
 import {
   AppBar,
   Button,
   Container,
   Grid,
   makeStyles,
-  Modal,
   Toolbar,
   Typography,
-  Link,
 } from "@material-ui/core/";
-import BlockIcon from "@material-ui/icons/Block";
+
 // import WbIncandescentIcon from "@material-ui/icons/WbIncandescent";
 import logo from "../logo.svg";
-import SignUp from "./Account/SignUp";
-import Login from "./Account/Login";
+
 const useStyle = makeStyles(({ spacing, palette, shadows }) => ({
   root: {
     flexGrow: 1,
@@ -39,8 +37,11 @@ const useStyle = makeStyles(({ spacing, palette, shadows }) => ({
     white: "60px",
     height: "60px",
   },
-  btnContac: {
+  colorWhite: {
     color: palette.common.white,
+  },
+  btnUnderlineNone: {
+    textDecoration: "none",
   },
   modal: {
     display: "flex",
@@ -66,32 +67,9 @@ const useStyle = makeStyles(({ spacing, palette, shadows }) => ({
 }));
 
 const Header = () => {
-  const [modal, setModal] = useState(false);
-  const [isUser, setIsUser] = useState(true);
-  console.log(setIsUser, "XXXXXXXX");
+
   const classes = useStyle();
 
-  const handleModal = () => {
-    setModal(!modal);
-  };
-
-  const modalBody = (
-    <section className={classes.modalSection}>
-      {isUser ? <Login /> : <SignUp />}
-      <div className={classes.formButton}>
-        <Button
-          className={classes.formButtonCancel}
-          variant="contained"
-          color="secondary"
-          startIcon={<BlockIcon />}
-          size="large"
-          onClick={handleModal}
-        >
-          Cancelar
-        </Button>
-      </div>
-    </section>
-  );
   return (
     <>
       <AppBar position="sticky" className={classes.header}>
@@ -106,11 +84,16 @@ const Header = () => {
                 className={classes.headerItem}
                 alignItems="center"
               >
-                <img className={classes.logo} src={logo} alt="logo" />
-
-                <Typography variant="h6">
-                  Global <code>Channel</code>
-                </Typography>
+                <Link to="/">
+                  <img className={classes.logo} src={logo} alt="logo" />
+                </Link>
+                <span >
+                  <Link to="/"  className={classes.btnUnderlineNone}>
+                    <Typography className={classes.colorWhite} variant="h6">
+                      Global <code>Channel</code>
+                    </Typography>
+                  </Link>
+                </span>
               </Grid>
               <Grid
                 container
@@ -120,26 +103,26 @@ const Header = () => {
                 className={(classes.headerItem, classes.headerRight)}
                 alignItems="center"
               >
-                <Link component="button" className={classes.btnContac}>
+                <Link
+                  to="/contacto"
+                  component="button"
+                  className={classes.colorWhite}
+                >
                   Contactar con el administrador
                 </Link>
-                <Button
-                  variant="contained"
-                  color="secondary"
-                  onClick={handleModal}
-                >
-                  Iniciar sesión
-                </Button>
 
+                <Link to="/login" className={classes.btnUnderlineNone}>
+                  <Button variant="contained" color="secondary">
+                    Iniciar sesión
+                  </Button>
+                </Link>
                 {/* <WbIncandescentIcon /> */}
               </Grid>
             </Grid>
           </Toolbar>
         </Container>
       </AppBar>
-      <Modal open={modal} onClose={handleModal} className={classes.modal}>
-        {modalBody}
-      </Modal>
+      
     </>
   );
 };

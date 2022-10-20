@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import {
   Button,
   FormControl,
@@ -7,7 +8,6 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  Link,
   makeStyles,
   MenuItem,
   TextField,
@@ -15,6 +15,7 @@ import {
 } from "@material-ui/core";
 import { Visibility, VisibilityOff } from "@material-ui/icons";
 import { useState } from "react";
+import SignUp from "./SignUp";
 const useStyle = makeStyles(({ palette, spacing }) => ({
   root: {
     maxWidth: "550px",
@@ -102,9 +103,10 @@ const Login = (isUser, setIsUser) => {
         Iniciar sesión
       </Typography>
       <Typography variant="body1">
-        ¿Nuevo Usuario? <Link component="button">Crear cuenta</Link>
+        ¿Nuevo Usuario? <Link to="/contacto" component="button">Crear cuenta</Link>
       </Typography>
 
+     
       <form className={classes.formLogin} onSubmit={handlOnSubmit}>
         <div className={classes.formField}>
           <TextField

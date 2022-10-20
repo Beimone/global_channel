@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import {
   Button,
   FormControl,
@@ -7,7 +8,6 @@ import {
   Input,
   InputAdornment,
   InputLabel,
-  Link,
   makeStyles,
   MenuItem,
   TextField,
@@ -116,7 +116,7 @@ const SignUp = () => {
         sea verificada por el administrador.
       </Typography>
       <Typography variant="body1">
-        ¿Ya tienes una cuenta? <Link component="button">Iniciar sesión</Link>
+        ¿Ya tienes una cuenta? <Link to ="/login" component="button">Iniciar sesión</Link>
       </Typography>
 
       <form className={classes.formLogin} onSubmit={handlOnSubmit}>

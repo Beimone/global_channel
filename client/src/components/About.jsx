@@ -1,7 +1,10 @@
+import React from "react";
 import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 import heroImage from "../img/heroImage.jpg";
 import SearchContainer from "./Item/SearchContainer";
 import MostrarDatos from "./MostrarDatos";
+
+
 
 const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   root: {},
@@ -38,10 +41,10 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   },
 }));
 
-const Main = () => {
+const About = () => {
   const classes = useStyle();
   return (
-    <main className={classes.root}>
+    <>
       <Grid className={classes.hero}>
         <article className={classes.heroImage}>
           <div className={classes.heroContent}>
@@ -62,7 +65,7 @@ const Main = () => {
         </article>
         <p>main</p>
       </Container>
-    </main>
+    </>
   );
 };
-export default Main;
+export default About;

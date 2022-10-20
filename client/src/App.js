@@ -12,9 +12,9 @@ function App() {
       <Header />
       <main>
         <Routes>
-          <Route exact path="/" element={<About />}/>
+          <Route exact path="/" element={<About />} />
           <Route path="/contacto" element={<SignUp />} />
-          <Route path = "/login" element={<Login/>} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </main>
       <Footer />

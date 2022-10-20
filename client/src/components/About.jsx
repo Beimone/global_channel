@@ -4,8 +4,6 @@ import heroImage from "../img/heroImage.jpg";
 import SearchContainer from "./Item/SearchContainer";
 import MostrarDatos from "./MostrarDatos";
 
-
-
 const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   root: {},
   hero: {
@@ -39,6 +37,9 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   article: {
     // height: "90vh",
   },
+  paddingContainer: {
+    padding: spacing(10, 0),
+  },
 }));
 
 const About = () => {
@@ -59,11 +60,10 @@ const About = () => {
           </div>
         </article>
       </Grid>
-      <Container>
+      <Container className={classes.paddingContainer}>
         <article className={classes.article}>
           <MostrarDatos />
         </article>
-        <p>main</p>
       </Container>
     </>
   );

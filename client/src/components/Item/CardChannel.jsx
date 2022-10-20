@@ -22,6 +22,7 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     h4: 10,
   },
   espacio: {
+    paddingTop: spacing(5),
     gap: 10,
   },
   btnDetalle: {
@@ -102,7 +103,11 @@ const CardChannel = ({ canales }) => {
                       {canal.numero}
                     </Typography>
                     <picture className={classes.picture}>
-                      <img src={canal.imagen} alt={canal.nombre}></img>
+                      <img
+                        className={classes.pictureImg}
+                        src={canal.imagen}
+                        alt={canal.nombre}
+                      ></img>
                     </picture>
                     <CardContent align="center">
                       Señal de {canal.tipo}

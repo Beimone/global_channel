@@ -12,16 +12,14 @@ import Grid from "@material-ui/core/Grid";
 const useStyles = makeStyles({
   root: {
     minWidth: 300,
-    minHeight:200,
+    minHeight: 200,
     alignItems: "center",
   },
-  numero_canal:{
-    justifyContent:'center',
-
+  numero_canal: {
+    justifyContent: "center",
   },
   typography: {
     h4: 10,
-
   },
   espacio: {
     gap: 10,
@@ -54,30 +52,35 @@ const MostrarDatos = () => {
       <br />
       <Grid container className={classes.espacio} justify="center">
         {!canales ? (
-          <BeatLoader color="#3667d6" className="loading" LengthType="120" /> 
+          <BeatLoader color="#3667d6" className="loading" LengthType="120" />
         ) : (
           canales.map((canal, index) => {
             return (
               <Card key={canal.id} className={classes.root}>
                 <CardActionArea>
                   <CardContent>
-                    <Typography align = "center" variant="h4" className={classes.h4} >
+                    <Typography
+                      align="center"
+                      variant="h4"
+                      className={classes.h4}
+                    >
                       {canal.nombre}
                     </Typography>
                   </CardContent>
-                  <Typography className={classes.numero__canal} align = "center">
+                  <Typography className={classes.numero__canal} align="center">
                     {canal.numero}
                   </Typography>
                   <div className="picture">
                     <img src={canal.imagen} alt={canal.nombre}></img>
                   </div>
-                  <CardContent align = "center">Señal de {canal.tipo}</CardContent>
-                  <CardActions  className="btn btn-detalle">
+                  <CardContent align="center">
+                    Señal de {canal.tipo}
+                  </CardContent>
+                  <CardActions className="btn btn-detalle">
                     <Button
                       variant="contained"
                       color="primary"
                       href="#contained-buttons"
-                     
                     >
                       Detalle
                     </Button>

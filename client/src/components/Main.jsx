@@ -1,6 +1,7 @@
 import { Container, Grid, makeStyles, Typography } from "@material-ui/core";
 import heroImage from "../img/heroImage.jpg";
 import SearchContainer from "./Item/SearchContainer";
+import MostrarDatos from "./MostrarDatos";
 
 const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   root: {},
@@ -33,7 +34,7 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
     },
   },
   article: {
-    height: "90vh",
+    // height: "90vh",
   },
 }));
 
@@ -56,7 +57,9 @@ const Main = () => {
         </article>
       </Grid>
       <Container>
-        <article className={classes.article}></article>
+        <article className={classes.article}>
+          <MostrarDatos />
+        </article>
         <p>main</p>
       </Container>
     </main>

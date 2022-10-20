@@ -90,6 +90,7 @@ const SearchContainer = () => {
           <SearchIcon />
         </IconButton>
         <InputBase
+          onKeyUp={handleChange("search")}
           placeholder="Buscar…"
           classes={{
             root: classes.inputRoot,
@@ -110,9 +111,9 @@ const SearchContainer = () => {
           onChange={handleChange("typeCards")}
           // helperText="Por favor elija una opción"
         >
-          {searchType.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
+          {searchType.map((event) => (
+            <MenuItem key={event.value} id={event.value} value={event.value}>
+              {event.label}
             </MenuItem>
           ))}
         </TextField>

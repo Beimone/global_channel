@@ -38,7 +38,7 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
     // height: "90vh",
   },
   paddingContainer: {
-    padding: spacing(10, 0),
+    padding: spacing(10, 2),
   },
 }));
 

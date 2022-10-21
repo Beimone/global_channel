@@ -5,9 +5,10 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { useState } from "react";
+import { useState} from "react";
 import { Button, Modal } from "@material-ui/core";
 import BlockIcon from "@material-ui/icons/Block";
+
 
 const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   root: {
@@ -51,8 +52,12 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     borderRadius: spacing(3),
   },
 }));
+
+
 const CardChannel = ({ canales }) => {
   const [modal, setModal] = useState(false);
+  
+ 
 
   const classes = useStyles();
   const handleModal = () => {
@@ -82,10 +87,10 @@ const CardChannel = ({ canales }) => {
         {!canales ? (
           <BeatLoader color="#3667d6" className="loading" lengthtype="120" />
         ) : (
-          canales.map((canal, index) => {
+          canales.map((canal) => {
             return (
-              <article>
-                <Card key={canal.id} className={classes.root}>
+              <article key={canal.id} >
+                <Card className={classes.root}>
                   <CardActionArea onClick={handleModal}>
                     <CardContent>
                       <Typography
@@ -116,7 +121,7 @@ const CardChannel = ({ canales }) => {
                 </Card>
               </article>
             );
-          })
+          }).sort()
         )}
       </Grid>
       <Modal open={modal} onClose={handleModal} className={classes.modal}>

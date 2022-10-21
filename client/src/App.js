@@ -6,6 +6,9 @@ import "./App.css";
 import SignUp from "./components/Account/SignUp";
 import Login from "./components/Account/Login";
 import { makeStyles } from "@material-ui/core";
+import CardChannel from "./components/Item/CardChannel";
+
+import GetData from "./components/GetData";
 const useStyle = makeStyles(() => ({
   main: {
     display: "flex",
@@ -21,11 +24,13 @@ function App() {
   return (
     <>
       <Header />
-      <main className={classes.main}>
+      <main className={classes.main}>       
         <Routes>
           <Route exact path="/" element={<About />} />
           <Route path="/contacto" element={<SignUp />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/channel/:id" element={<CardChannel />} /> 
+          <Route path="/search/:typeCards/:search" element={<GetData />} />           
         </Routes>
       </main>
       <Footer />

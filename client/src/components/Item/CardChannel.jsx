@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Modal } from "@material-ui/core";
 import CardDetails from "./CardDetails";
 
-const useStyles = makeStyles(({ spacing }) => ({
+const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   root: {
     minWidth: 300,
     minHeight: 200,
@@ -44,6 +44,7 @@ const useStyles = makeStyles(({ spacing }) => ({
     justifyContent: "center",
   },
 }));
+
 const CardChannel = ({ canales }) => {
   const [modal, setModal] = useState(false);
 
@@ -58,41 +59,43 @@ const CardChannel = ({ canales }) => {
         {!canales ? (
           <BeatLoader color="#3667d6" className="loading" lengthtype="120" />
         ) : (
-          canales.map((canal) => {
-            return (
-              <article>
-                <Card key={canal.id} className={classes.root}>
-                  <CardActionArea onClick={handleModal}>
-                    <CardContent>
+          canales
+            .map((canal) => {
+              return (
+                <article key={canal.id}>
+                  <Card className={classes.root}>
+                    <CardActionArea onClick={handleModal}>
+                      <CardContent>
+                        <Typography
+                          align="center"
+                          variant="h4"
+                          className={classes.h4}
+                        >
+                          {canal.nombre}
+                        </Typography>
+                      </CardContent>
                       <Typography
+                        className={classes.numero__canal}
                         align="center"
-                        variant="h4"
-                        className={classes.h4}
                       >
-                        {canal.nombre}
+                        {canal.numero}
                       </Typography>
-                    </CardContent>
-                    <Typography
-                      className={classes.numero__canal}
-                      align="center"
-                    >
-                      {canal.numero}
-                    </Typography>
-                    <picture className={classes.picture}>
-                      <img
-                        className={classes.pictureImg}
-                        src={canal.imagen}
-                        alt={canal.nombre}
-                      ></img>
-                    </picture>
-                    <CardContent align="center">
-                      Señal de {canal.tipo}
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </article>
-            );
-          })
+                      <picture className={classes.picture}>
+                        <img
+                          className={classes.pictureImg}
+                          src={canal.imagen}
+                          alt={canal.nombre}
+                        ></img>
+                      </picture>
+                      <CardContent align="center">
+                        Señal de {canal.tipo}
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </article>
+              );
+            })
+            .sort()
         )}
       </Grid>
       <Modal

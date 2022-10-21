@@ -9,7 +9,7 @@ import { useState } from "react";
 import { Modal } from "@material-ui/core";
 import CardDetails from "./CardDetails";
 
-const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
+const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
     minWidth: 300,
     minHeight: 200,
@@ -43,6 +43,10 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     alignItems: "center",
     justifyContent: "center",
   },
+  subTitle: {
+    color: palette.text.secondary,
+    margin: spacing(3, 5),
+  },
 }));
 
 const CardChannel = ({ canales }) => {
@@ -55,6 +59,18 @@ const CardChannel = ({ canales }) => {
 
   return (
     <section>
+      {canales.length === 1 ? (
+        <Typography variant="h2" className={classes.subTitle}>
+          <b>Canal: </b>
+          {canales[0].nombre}
+        </Typography>
+      ) : (
+        <Typography variant="h2" className={classes.subTitle}>
+          {" "}
+          <b>Listado de canales</b>{" "}
+        </Typography>
+      )}
+
       <Grid container className={classes.espacio} justifyContent="center">
         {!canales ? (
           <BeatLoader color="#3667d6" className="loading" lengthtype="120" />

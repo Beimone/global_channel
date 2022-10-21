@@ -67,7 +67,6 @@ const useStyle = makeStyles(({ spacing, palette, shadows }) => ({
 }));
 
 const Header = () => {
-
   const classes = useStyle();
 
   return (
@@ -87,8 +86,8 @@ const Header = () => {
                 <Link to="/">
                   <img className={classes.logo} src={logo} alt="logo" />
                 </Link>
-                <span >
-                  <Link to="/"  className={classes.btnUnderlineNone}>
+                <span>
+                  <Link to="/" className={classes.btnUnderlineNone}>
                     <Typography className={classes.colorWhite} variant="h6">
                       Global <code>Channel</code>
                     </Typography>
@@ -106,6 +105,7 @@ const Header = () => {
                 <Link
                   to="/contacto"
                   component="button"
+                  align="right"
                   className={classes.colorWhite}
                 >
                   Contactar con el administrador
@@ -122,7 +122,6 @@ const Header = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      
     </>
   );
 };

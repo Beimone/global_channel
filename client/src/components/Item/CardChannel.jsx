@@ -6,10 +6,10 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { useState } from "react";
-import { Button, Modal } from "@material-ui/core";
-import BlockIcon from "@material-ui/icons/Block";
+import { Modal } from "@material-ui/core";
+import CardDetails from "./CardDetails";
 
-const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
+const useStyles = makeStyles(({ spacing }) => ({
   root: {
     minWidth: 300,
     minHeight: 200,
@@ -23,7 +23,7 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   },
   espacio: {
     paddingTop: spacing(5),
-    gap: 10,
+    gap: spacing(1.2),
   },
   btnDetalle: {
     justifyContent: "center",
@@ -43,13 +43,6 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  modalSection: {
-    maxWidth: "80%",
-    backgroundColor: palette.common.white,
-    boxShadow: shadows[5],
-    padding: spacing(7, 4),
-    borderRadius: spacing(3),
-  },
 }));
 const CardChannel = ({ canales }) => {
   const [modal, setModal] = useState(false);
@@ -59,30 +52,13 @@ const CardChannel = ({ canales }) => {
     setModal(!modal);
   };
 
-  const modalBody = (
-    <section className={classes.modalSection}>
-      <div className={classes.formButton}>
-        <Button
-          className={classes.formButtonCancel}
-          variant="contained"
-          color="secondary"
-          startIcon={<BlockIcon />}
-          size="large"
-          onClick={handleModal}
-        >
-          Cancelar
-        </Button>
-      </div>
-    </section>
-  );
-
   return (
     <section>
       <Grid container className={classes.espacio} justifyContent="center">
         {!canales ? (
           <BeatLoader color="#3667d6" className="loading" lengthtype="120" />
         ) : (
-          canales.map((canal, index) => {
+          canales.map((canal) => {
             return (
               <article>
                 <Card key={canal.id} className={classes.root}>
@@ -119,8 +95,16 @@ const CardChannel = ({ canales }) => {
           })
         )}
       </Grid>
-      <Modal open={modal} onClose={handleModal} className={classes.modal}>
-        {modalBody}
+      <Modal
+        open={modal}
+        onClose={handleModal}
+        className={classes.modal}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <CardDetails />
       </Modal>
     </section>
   );

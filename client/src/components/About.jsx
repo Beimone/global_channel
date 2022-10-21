@@ -34,9 +34,7 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
       width: "50%",
     },
   },
-  article: {
-    // height: "90vh",
-  },
+
   paddingContainer: {
     padding: spacing(10, 2),
   },

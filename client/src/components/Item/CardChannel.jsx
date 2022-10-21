@@ -51,9 +51,11 @@ const useStyles = makeStyles(({ palette, spacing }) => ({
 
 const CardChannel = ({ canales }) => {
   const [modal, setModal] = useState(false);
+  const [id, setId] = useState("");
 
   const classes = useStyles();
-  const handleModal = () => {
+  const handleModal = (prop) => (event) => {
+    setId(prop);
     setModal(!modal);
   };
 
@@ -80,7 +82,7 @@ const CardChannel = ({ canales }) => {
               return (
                 <article key={canal.id}>
                   <Card className={classes.root}>
-                    <CardActionArea onClick={handleModal}>
+                    <CardActionArea onClick={handleModal(`${canal.id}`)}>
                       <CardContent>
                         <Typography
                           align="center"
@@ -116,14 +118,14 @@ const CardChannel = ({ canales }) => {
       </Grid>
       <Modal
         open={modal}
-        onClose={handleModal}
+        onClose={handleModal("")}
         className={classes.modal}
         closeAfterTransition
         BackdropProps={{
           timeout: 500,
         }}
       >
-        <CardDetails />
+        <CardDetails id={id} />
       </Modal>
     </section>
   );

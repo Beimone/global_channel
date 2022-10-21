@@ -9,9 +9,8 @@ import {
   TextField,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
-import { useEffect, useState } from "react";
-import { useNavigate, Route, Routes } from "react-router-dom";
-import GetData from "../GetData";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const useStyle = makeStyles(({ palette, spacing, shape, breakpoints }) => ({
   root: {},
@@ -76,7 +75,7 @@ const SearchContainer = () => {
     search: "",
     typeCards: "name",
   });
-const navigate = useNavigate()
+  const navigate = useNavigate();
   const handleChange = (prop) => (event) => {
     if (searchCards.hasOwnProperty(prop)) {
       setSearchCards({ ...searchCards, [prop]: event.target.value });
@@ -84,29 +83,28 @@ const navigate = useNavigate()
       console.log("Propiedad no valido");
     }
   };
- /*  useEffect(() => {
+  /*  useEffect(() => {
     handleSubmit();
   }, [searchTerm]); */
 
   const handleSubmit = (event) => {
-    if (event.key !== 'Enter') {
+    if (event.key !== "Enter") {
       return;
     }
-    if (event.target.value === '') {
-      return navigate('/');
+    if (event.target.value === "") {
+      return navigate("/");
     }
     return navigate(`/search/${searchCards.typeCards}/${searchCards.search}`);
   };
 
   return (
     <Paper component="form" className={classes.searchContainer}>
-      
       <div className={classes.searchItemLeft}>
         <IconButton className={classes.searchIcon} aria-label="search">
           <SearchIcon />
         </IconButton>
         <InputBase
-        onKeyPress={handleSubmit}
+          onKeyPress={handleSubmit}
           onKeyUp={handleChange("search")}
           placeholder="Buscar…"
           classes={{

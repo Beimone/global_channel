@@ -121,7 +121,8 @@ const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
   },
 }));
 
-const CardDetails = () => {
+const CardDetails = ({ id }) => {
+  console.log(id);
   const classes = useStyles();
   const [details, setDetails] = useState(true);
   const handleChange = () => {

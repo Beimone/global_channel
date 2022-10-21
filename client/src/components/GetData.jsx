@@ -1,4 +1,4 @@
-import { Container } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import CardChannel from "../components/Item/CardChannel";
@@ -24,9 +24,10 @@ const GetData = () => {
   }, [typeCards, search]);
 
   return (
-    <Container>
-      <CardChannel canales={canales} />;
-    </Container>
+    <>
+      <Typography variant="h2">Listado de canales</Typography>
+      <CardChannel canales={canales} />
+    </>
   );
 };
 

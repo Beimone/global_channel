@@ -34,11 +34,15 @@ const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
       width: "50%",
     },
   },
-  article: {
-    // height: "90vh",
-  },
   paddingContainer: {
     padding: spacing(10, 2),
+  },
+  title: {
+    color: palette.common.white,
+    fontWeight: "500",
+  },
+  subtitle: {
+    color: palette.common.white,
   },
 }));
 
@@ -49,11 +53,15 @@ const About = () => {
       <Grid className={classes.hero}>
         <article className={classes.heroImage}>
           <div className={classes.heroContent}>
-            <Typography variant="h1" align="center">
+            <Typography variant="h1" align="center" className={classes.title}>
               Global Channel
             </Typography>
             <SearchContainer />
-            <Typography variant="subtitle1" align="center">
+            <Typography
+              variant="subtitle1"
+              align="center"
+              className={classes.subtitle}
+            >
               Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
               odio nisi, quibusdam nemo provident impedit quasi.
             </Typography>

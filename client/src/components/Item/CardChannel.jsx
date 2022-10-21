@@ -5,12 +5,11 @@ import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
-import { useState} from "react";
-import { Button, Modal } from "@material-ui/core";
-import BlockIcon from "@material-ui/icons/Block";
+import { useState } from "react";
+import { Modal } from "@material-ui/core";
+import CardDetails from "./CardDetails";
 
-
-const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
+const useStyles = makeStyles(({ palette, spacing }) => ({
   root: {
     minWidth: 300,
     minHeight: 200,
@@ -24,7 +23,7 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
   },
   espacio: {
     paddingTop: spacing(5),
-    gap: 10,
+    gap: spacing(1.2),
   },
   btnDetalle: {
     justifyContent: "center",
@@ -44,88 +43,87 @@ const useStyles = makeStyles(({ palette, spacing, shadows }) => ({
     alignItems: "center",
     justifyContent: "center",
   },
-  modalSection: {
-    maxWidth: "80%",
-    backgroundColor: palette.common.white,
-    boxShadow: shadows[5],
-    padding: spacing(7, 4),
-    borderRadius: spacing(3),
+  subTitle: {
+    color: palette.text.secondary,
+    margin: spacing(3, 5),
   },
 }));
 
-
 const CardChannel = ({ canales }) => {
   const [modal, setModal] = useState(false);
-  
- 
 
   const classes = useStyles();
   const handleModal = () => {
     setModal(!modal);
   };
 
-  const modalBody = (
-    <section className={classes.modalSection}>
-      <div className={classes.formButton}>
-        <Button
-          className={classes.formButtonCancel}
-          variant="contained"
-          color="secondary"
-          startIcon={<BlockIcon />}
-          size="large"
-          onClick={handleModal}
-        >
-          Cancelar
-        </Button>
-      </div>
-    </section>
-  );
-
   return (
     <section>
+      {canales.length === 1 ? (
+        <Typography variant="h2" className={classes.subTitle}>
+          <b>Canal: </b>
+          {canales[0].nombre}
+        </Typography>
+      ) : (
+        <Typography variant="h2" className={classes.subTitle}>
+          {" "}
+          <b>Listado de canales</b>{" "}
+        </Typography>
+      )}
+
       <Grid container className={classes.espacio} justifyContent="center">
         {!canales ? (
           <BeatLoader color="#3667d6" className="loading" lengthtype="120" />
         ) : (
-          canales.map((canal) => {
-            return (
-              <article key={canal.id} >
-                <Card className={classes.root}>
-                  <CardActionArea onClick={handleModal}>
-                    <CardContent>
+          canales
+            .map((canal) => {
+              return (
+                <article key={canal.id}>
+                  <Card className={classes.root}>
+                    <CardActionArea onClick={handleModal}>
+                      <CardContent>
+                        <Typography
+                          align="center"
+                          variant="h4"
+                          className={classes.h4}
+                        >
+                          {canal.nombre}
+                        </Typography>
+                      </CardContent>
                       <Typography
+                        className={classes.numero__canal}
                         align="center"
-                        variant="h4"
-                        className={classes.h4}
                       >
-                        {canal.nombre}
+                        {canal.numero}
                       </Typography>
-                    </CardContent>
-                    <Typography
-                      className={classes.numero__canal}
-                      align="center"
-                    >
-                      {canal.numero}
-                    </Typography>
-                    <picture className={classes.picture}>
-                      <img
-                        className={classes.pictureImg}
-                        src={canal.imagen}
-                        alt={canal.nombre}
-                      ></img>
-                    </picture>
-                    <CardContent align="center">
-                      Señal de {canal.tipo}
-                    </CardContent>
-                  </CardActionArea>
-                </Card>
-              </article>
-            );
-          }).sort()
+                      <picture className={classes.picture}>
+                        <img
+                          className={classes.pictureImg}
+                          src={canal.imagen}
+                          alt={canal.nombre}
+                        ></img>
+                      </picture>
+                      <CardContent align="center">
+                        Señal de {canal.tipo}
+                      </CardContent>
+                    </CardActionArea>
+                  </Card>
+                </article>
+              );
+            })
+            .sort()
         )}
       </Grid>
-      <Modal open={modal} onClose={handleModal} className={classes.modal}>
-        {modalBody}
+      <Modal
+        open={modal}
+        onClose={handleModal}
+        className={classes.modal}
+        closeAfterTransition
+        BackdropProps={{
+          timeout: 500,
+        }}
+      >
+        <CardDetails />
       </Modal>
     </section>
   );

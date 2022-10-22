@@ -9,7 +9,8 @@ import {
   Paper,
   Typography,
 } from "@material-ui/core";
-import { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
 import iconChannel from "../../img/iconChannel.svg";
 import IOSSwitch from "./IOSSwicth";
 
@@ -122,7 +123,24 @@ const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
 }));
 
 const CardDetails = ({ id }) => {
+  
+  const [channelId, setChannelId]=useState([]);
+
+  const getCanal = async () =>{
+    const res = await axios.get(`http://localhost:5001/api/channel/${id}`);
+    console.log("🚀 ~ file: CardDetails.jsx ~ line 131 ~ getCanal ~ res", res)
+    const channelData = res.data
+    console.log("🚀 ~ file: CardDetails.jsx ~ line 133 ~ getCanal ~ channelData", channelData)
+   
+    setChannelId(res.data)
+   
+  }
+    useEffect(()=>{
+      getCanal()
+    },[id]);
+
   console.log(id);
+
   const classes = useStyles();
   const [details, setDetails] = useState(true);
   const handleChange = () => {
@@ -130,15 +148,17 @@ const CardDetails = ({ id }) => {
   };
 
   const cartTrue = (
-    <>
+    <> 
+    {console.log({channelId})}
+    
       <Typography align="right" variant="subtitle1">
-        <b>Nacional</b>
+        <b>{channelId.proveedor}</b>
       </Typography>
       <Box className={classes.rowGap}>
         <Typography variant="h5">Contacto:</Typography>
         <Grid direction="row" className={classes.itemsContain}>
           <Typography variant="subtitle1">
-            <b>Jorge Sepúlveda:</b> +00123456789
+            <b>Jhans de la Cruz{/* {channelId.nombre} */}</b> +00123456789
           </Typography>
           {/* <Typography variant="subtitle1">
                   <b>Jorge Sepúlveda:</b> +00123456789
@@ -153,13 +173,13 @@ const CardDetails = ({ id }) => {
   const cartFalse = (
     <>
       <Typography align="right" variant="subtitle1">
-        bw: <b>0.4</b>
+      bandwidth: <b>{channelId.bw}mb</b>
       </Typography>
       <Box className={classes.rowGap}>
         <Typography variant="h5">Criticidad:</Typography>
         <Grid direction="row" className={classes.itemsContain}>
           <Typography variant="subtitle1">
-            <b>4</b>
+            <b>{channelId.criticidad}</b>
           </Typography>
         </Grid>
       </Box>
@@ -173,19 +193,19 @@ const CardDetails = ({ id }) => {
             <div className={classes.imgLogo}>
               <img
                 className={classes.img}
-                src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Logo_Radio_Beethoven_2020.jpg"
-                alt=""
+                src={channelId.imagen}
+                alt={channelId.nombre}
               />
               <Typography variant="h5">
                 <figcaption>
                   {" "}
-                  <b> 23</b>
+                  <b>{channelId.numero}</b>
                 </figcaption>
               </Typography>
             </div>
           </picture>
           <Typography className={classes.cardTitle} variant="h3" align="center">
-            Beethoven
+            {channelId.nombre}
           </Typography>
           <picture className={classes.cardChannelType}>
             <div className={classes.imgChannelType}>
@@ -195,7 +215,7 @@ const CardDetails = ({ id }) => {
                 alt="Icon Channel"
               />
             </div>
-            <figcaption>TV</figcaption>
+            <figcaption>{channelId.tipo}</figcaption>
           </picture>
 
           <Paper className={classes.cardPaper} variant="outlined">
@@ -218,13 +238,14 @@ const CardDetails = ({ id }) => {
           <Typography variant="h5">Multicast:</Typography>
           <Grid direction="row" container className={classes.itemsContain}>
             <Typography variant="subtitle1">
-              <b>adsl:</b> 239.255.2.79
+             {/* {` adsl: ${channelId.multicast[0].adsl} `} */}
             </Typography>
             <Typography variant="subtitle1">
-              <b>fca:</b> 239.255.5.79
+            {/*  {` fca: ${channelId.multicast[1]}`} */}
             </Typography>
             <Typography variant="subtitle1">
-              <b>mpeg4:</b> 239.255.3.47
+            {/* {` mpeg4: ${channelId.multicast[2]}`} */}
+              
             </Typography>
           </Grid>
         </Grid>

@@ -86,8 +86,6 @@ const SignUp = () => {
   const handleChange = (prop) => (event) => {
     if (user.hasOwnProperty(prop)) {
       setUser({ ...user, [prop]: event.target.value });
-    } else {
-      console.log("Propiedad no valido");
     }
   };
   const handleClickShowPassword = () => {
@@ -103,7 +101,6 @@ const SignUp = () => {
       setPasswordError(true);
       return;
     }
-    console.log(user);
   };
 
   return (

@@ -5,8 +5,8 @@
 
 
 Sistema de despliegue de información de señales de televisión y radio.\
-Nombre de los participantes: *Jhans de la Cruz Damian y Jorge Sepúlveda Turpie*.\
-### `Cohorte N°2`.\
+Nombre de los participantes: **Jhans de la Cruz Damian y Jorge Sepúlveda Turpie**.
+### `Cohorte N°2`.
 
 **URL del proyecto**
 

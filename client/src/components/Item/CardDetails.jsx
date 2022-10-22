@@ -15,9 +15,6 @@ import iconChannel from "../../img/iconChannel.svg";
 import IOSSwitch from "./IOSSwicth";
 
 const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
-  img: {
-    width: "100%",
-  },
   cardContainer: {
     maxWidth: "810px",
     width: "80%",
@@ -29,7 +26,16 @@ const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
       padding: spacing(4, 2),
     },
   },
-
+  imgLog: {
+    maxHeight: "100%",
+    maxWidth: "100%",
+    [breakpoints.up("sm")]: {
+      maxHeight: "50%",
+    },
+  },
+  imgChann: {
+    width: "100%",
+  },
   cardSection: {
     display: "grid",
     gridTemplateColumns: "0.5fr 1fr 0.5fr 0.5fr",
@@ -90,16 +96,16 @@ const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
     maxWidth: "32px",
   },
   imgLogo: {
-    maxWidth: "150px",
+    width: "100%",
+    height: "100%",
     display: "flex",
     flexDirection: "row",
-    columnGap: spacing(2),
+    columnGap: spacing(1),
     alignItems: "center",
     [breakpoints.up("sm")]: {
-      maxWidth: "90%",
-      objectFill: "cover",
+      objectFilt: "contain",
       flexDirection: "column",
-      rowGap: spacing(2),
+      rowGap: spacing(1),
     },
   },
   rowGap: {
@@ -123,21 +129,22 @@ const useStyles = makeStyles(({ palette, spacing, shadows, breakpoints }) => ({
 }));
 
 const CardDetails = ({ id }) => {
-  
-  const [channelId, setChannelId]=useState([]);
+  const [channelId, setChannelId] = useState([]);
 
-  const getCanal = async () =>{
+  const getCanal = async () => {
     const res = await axios.get(`http://localhost:5001/api/channel/${id}`);
-    console.log("🚀 ~ file: CardDetails.jsx ~ line 131 ~ getCanal ~ res", res)
-    const channelData = res.data
-    console.log("🚀 ~ file: CardDetails.jsx ~ line 133 ~ getCanal ~ channelData", channelData)
-   
-    setChannelId(res.data)
-   
-  }
-    useEffect(()=>{
-      getCanal()
-    },[id]);
+    console.log("🚀 ~ file: CardDetails.jsx ~ line 131 ~ getCanal ~ res", res);
+    const channelData = res.data;
+    console.log(
+      "🚀 ~ file: CardDetails.jsx ~ line 133 ~ getCanal ~ channelData",
+      channelData
+    );
+
+    setChannelId(res.data);
+  };
+  useEffect(() => {
+    getCanal();
+  }, [id]);
 
   console.log(id);
 
@@ -148,9 +155,9 @@ const CardDetails = ({ id }) => {
   };
 
   const cartTrue = (
-    <> 
-    {console.log({channelId})}
-    
+    <>
+      {console.log({ channelId })}
+
       <Typography align="right" variant="subtitle1">
         <b>{channelId.proveedor}</b>
       </Typography>
@@ -173,7 +180,7 @@ const CardDetails = ({ id }) => {
   const cartFalse = (
     <>
       <Typography align="right" variant="subtitle1">
-      bandwidth: <b>{channelId.bw}mb</b>
+        bandwidth: <b>{channelId.bw}mb</b>
       </Typography>
       <Box className={classes.rowGap}>
         <Typography variant="h5">Criticidad:</Typography>
@@ -192,7 +199,7 @@ const CardDetails = ({ id }) => {
           <picture className={classes.cardLogo}>
             <div className={classes.imgLogo}>
               <img
-                className={classes.img}
+                className={classes.imgLog}
                 src={channelId.imagen}
                 alt={channelId.nombre}
               />
@@ -210,7 +217,7 @@ const CardDetails = ({ id }) => {
           <picture className={classes.cardChannelType}>
             <div className={classes.imgChannelType}>
               <img
-                className={classes.img}
+                className={classes.imgChann}
                 src={iconChannel}
                 alt="Icon Channel"
               />
@@ -238,14 +245,13 @@ const CardDetails = ({ id }) => {
           <Typography variant="h5">Multicast:</Typography>
           <Grid direction="row" container className={classes.itemsContain}>
             <Typography variant="subtitle1">
-             {/* {` adsl: ${channelId.multicast[0].adsl} `} */}
+              {/* {` adsl: ${channelId.multicast[0].adsl} `} */}
             </Typography>
             <Typography variant="subtitle1">
-            {/*  {` fca: ${channelId.multicast[1]}`} */}
+              {/*  {` fca: ${channelId.multicast[1]}`} */}
             </Typography>
             <Typography variant="subtitle1">
-            {/* {` mpeg4: ${channelId.multicast[2]}`} */}
-              
+              {/* {` mpeg4: ${channelId.multicast[2]}`} */}
             </Typography>
           </Grid>
         </Grid>

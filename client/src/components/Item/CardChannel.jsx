@@ -59,18 +59,49 @@ const CardChannel = ({ canales }) => {
     setModal(!modal);
   };
 
+  //Se ordenan el array de canales por numero del canal
+  canales.sort((item, itemNext) => {
+    if (item.numero < itemNext.numero) {
+      return -1;
+    }
+    if (item.numero > itemNext.numero) {
+      return 1;
+    }
+    return 0;
+  });
+
+  const ConditionalTitle = ({ length, name }) => {
+    switch (length) {
+      case 0:
+        return (
+          <Typography variant="h2" className={classes.subTitle}>
+            <b>Canal: </b> No encontrado
+          </Typography>
+        );
+      case 1:
+        return (
+          <Typography variant="h2" className={classes.subTitle}>
+            <b>Canal: </b>
+            {name}
+          </Typography>
+        );
+
+      default:
+        return (
+          <Typography variant="h2" className={classes.subTitle}>
+            {" "}
+            <b>Listado de canales</b>
+          </Typography>
+        );
+    }
+  };
+
   return (
     <section>
       {canales.length === 1 ? (
-        <Typography variant="h2" className={classes.subTitle}>
-          <b>Canal: </b>
-          {canales[0].nombre}
-        </Typography>
+        <ConditionalTitle length={1} name={canales[0].nombre} />
       ) : (
-        <Typography variant="h2" className={classes.subTitle}>
-          {" "}
-          <b>Listado de canales</b>{" "}
-        </Typography>
+        <ConditionalTitle length={canales.length} />
       )}
 
       <Grid container className={classes.espacio} justifyContent="center">

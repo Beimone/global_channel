@@ -12,7 +12,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const useStyle = makeStyles(({ palette, spacing, shape, breakpoints }) => ({
+const useStyle = makeStyles(({ palette, spacing, breakpoints }) => ({
   root: {},
   searchContainer: {
     display: "flex",
@@ -73,7 +73,7 @@ const SearchContainer = () => {
   const classes = useStyle();
   const [searchCards, setSearchCards] = useState({
     search: "",
-    typeCards: "name",
+    typeCards: "number",
   });
   const navigate = useNavigate();
   const handleChange = (prop) => (event) => {

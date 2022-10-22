@@ -66,7 +66,6 @@ const typeUser = [
 ];
 
 const Login = (isUser, setIsUser) => {
-  console.log(isUser, setIsUser);
   const classes = useStyle();
 
   const [user, setUser] = useState({
@@ -80,8 +79,6 @@ const Login = (isUser, setIsUser) => {
   const handleChange = (prop) => (event) => {
     if (user.hasOwnProperty(prop)) {
       setUser({ ...user, [prop]: event.target.value });
-    } else {
-      console.log("Propiedad no valido");
     }
   };
   const handleClickShowPassword = () => {
@@ -93,7 +90,6 @@ const Login = (isUser, setIsUser) => {
   };
   const handlOnSubmit = (e) => {
     e.preventDefault();
-    console.log(user);
     setPasswordError(true);
   };
 

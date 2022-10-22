@@ -133,20 +133,12 @@ const CardDetails = ({ id }) => {
 
   const getCanal = async () => {
     const res = await axios.get(`http://localhost:5001/api/channel/${id}`);
-    console.log("🚀 ~ file: CardDetails.jsx ~ line 131 ~ getCanal ~ res", res);
-    const channelData = res.data;
-    console.log(
-      "🚀 ~ file: CardDetails.jsx ~ line 133 ~ getCanal ~ channelData",
-      channelData
-    );
 
     setChannelId(res.data);
   };
   useEffect(() => {
     getCanal();
   }, [id]);
-
-  console.log(id);
 
   const classes = useStyles();
   const [details, setDetails] = useState(true);
@@ -156,16 +148,14 @@ const CardDetails = ({ id }) => {
 
   const cartTrue = (
     <>
-      {console.log({ channelId })}
-
       <Typography align="right" variant="subtitle1">
         <b>{channelId.proveedor}</b>
       </Typography>
       <Box className={classes.rowGap}>
         <Typography variant="h5">Contacto:</Typography>
-        <Grid direction="row" className={classes.itemsContain}>
+        <Grid container direction="row" className={classes.itemsContain}>
           <Typography variant="subtitle1">
-            <b>Jhans de la Cruz{/* {channelId.nombre} */}</b> +00123456789
+            <b>Jorge Sepúlveda{/* {channelId.nombre} */}</b> +00123456789
           </Typography>
           {/* <Typography variant="subtitle1">
                   <b>Jorge Sepúlveda:</b> +00123456789
@@ -192,6 +182,7 @@ const CardDetails = ({ id }) => {
       </Box>
     </>
   );
+
   return (
     <Card variant="outlined" className={classes.cardContainer}>
       <CardContent>
@@ -245,12 +236,16 @@ const CardDetails = ({ id }) => {
           <Typography variant="h5">Multicast:</Typography>
           <Grid direction="row" container className={classes.itemsContain}>
             <Typography variant="subtitle1">
+              <b>adsl: </b>239.255.2.79
+              {/* adsl: `${channelId.multicast[0].adsl}` */}
               {/* {` adsl: ${channelId.multicast[0].adsl} `} */}
             </Typography>
             <Typography variant="subtitle1">
+              <b>fca: </b>239.255.5.79
               {/*  {` fca: ${channelId.multicast[1]}`} */}
             </Typography>
             <Typography variant="subtitle1">
+              <b>mpeg4: </b>239.255.3.47
               {/* {` mpeg4: ${channelId.multicast[2]}`} */}
             </Typography>
           </Grid>

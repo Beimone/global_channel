@@ -79,8 +79,6 @@ const SearchContainer = () => {
   const handleChange = (prop) => (event) => {
     if (searchCards.hasOwnProperty(prop)) {
       setSearchCards({ ...searchCards, [prop]: event.target.value });
-    } else {
-      console.log("Propiedad no valido");
     }
   };
   /*  useEffect(() => {

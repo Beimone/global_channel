@@ -1,3 +1,6 @@
+![](./client/src/img/banner.png)
+
+
 # Global Channel
 
 

@@ -11,6 +11,3 @@ const port = process.env.PORT || 3001;
 
 allRoutes(app);
 
-app.listen(port, () => {
-  console.log(`Conexión al servidor en el port ${port}`);
-});
